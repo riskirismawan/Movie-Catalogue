@@ -1,10 +1,10 @@
 package com.riski.moviecatalogue.ui.movie
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.riski.moviecatalogue.databinding.FragmentMovieBinding
@@ -25,16 +25,18 @@ class MovieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
-            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[MovieViewModel::class.java]
-            val movies = viewModel.getMovie()
+            val viewModel = ViewModelProvider(
+                this,
+                ViewModelProvider.NewInstanceFactory()
+            )[MovieViewModel::class.java]
 
-            val movieAdapter = MovieGridAdapter()
-            movieAdapter.setMovies(movies)
+            viewModel.movie.observe(viewLifecycleOwner, { movies ->
+                binding.rvMovie.adapter = MovieGridAdapter(movies)
+            })
 
             with(binding.rvMovie) {
                 layoutManager = GridLayoutManager(this@MovieFragment.context, 2)
                 setHasFixedSize(true)
-                adapter = movieAdapter
             }
 
         }

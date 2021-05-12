@@ -33,22 +33,20 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_movie -> {
-                binding.fragmentContainer.removeAllViews()
                 val mFragmentManager = supportFragmentManager
                 val movieFragment = MovieFragment()
                 mFragmentManager
                     .beginTransaction()
-                    .add(R.id.fragment_container, movieFragment)
+                    .replace(R.id.fragment_container, movieFragment)
                     .addToBackStack(null)
                     .commit()
             }
             R.id.nav_tv_show -> {
-                binding.fragmentContainer.removeAllViews()
                 val mFragmentManager = supportFragmentManager
                 val tvShowFragment = TvShowFragment()
                 mFragmentManager
                     .beginTransaction()
-                    .add(R.id.fragment_container, tvShowFragment)
+                    .replace(R.id.fragment_container, tvShowFragment)
                     .addToBackStack(null)
                     .commit()
             }

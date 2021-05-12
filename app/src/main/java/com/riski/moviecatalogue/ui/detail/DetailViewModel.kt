@@ -1,43 +1,57 @@
 package com.riski.moviecatalogue.ui.detail
 
+import android.content.ContentValues.TAG
+import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.riski.moviecatalogue.data.MovieEntity
-import com.riski.moviecatalogue.data.TvShowEntity
-import com.riski.moviecatalogue.utils.DataDummy
+import com.riski.moviecatalogue.data.remote.ApiConfig
+import com.riski.moviecatalogue.data.response.MoviesItem
+import com.riski.moviecatalogue.data.response.TvShowsItem
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class DetailViewModel : ViewModel() {
+class DetailViewModel() : ViewModel() {
 
-    private lateinit var movieId: String
-    private lateinit var tvShowId: String
+    private val apiKey = "003b76808a270c1366be2601621229bf"
+    private val _movie = MutableLiveData<MoviesItem>()
+    private val _tvShow = MutableLiveData<TvShowsItem>()
+    
+    fun getMovieById(dataId: Int): MutableLiveData<MoviesItem> {
 
-    fun setSelectedMovie(movieId: String) {
-        this.movieId = movieId
-    }
-
-    fun setSelectedTvShow(tvShowId: String) {
-        this.tvShowId = tvShowId
-    }
-
-    fun getMovie(): MovieEntity {
-        lateinit var movie: MovieEntity
-        val movieEntities = DataDummy.generateDummyMovies()
-        for (movieEntity in movieEntities) {
-            if (movieEntity.movieId == movieId) {
-                movie = movieEntity
+        val client = ApiConfig.getApiService().getMovieById(dataId, apiKey)
+        client.enqueue(object : Callback<MoviesItem> {
+            override fun onResponse(call: Call<MoviesItem>, response: Response<MoviesItem>) {
+                if (response.isSuccessful)
+                    _movie.value = response.body()
+                else
+                    Log.e(TAG, "onResponse: ${response.message()}")
             }
-        }
-        return movie
+
+            override fun onFailure(call: Call<MoviesItem>, t: Throwable) {
+                Log.e(TAG, "onFailure: ${t.message}",)
+            }
+
+        })
+        return _movie
     }
 
-    fun getTvShow(): TvShowEntity {
-        lateinit var tvShow: TvShowEntity
-        val tvShowEntities = DataDummy.generateDummyTvShows()
-        for (tvShowEntity in tvShowEntities) {
-            if (tvShowEntity.tvShowId == tvShowId) {
-                tvShow = tvShowEntity
+    fun getTvById(dataId: Int): MutableLiveData<TvShowsItem> {
+        val client = ApiConfig.getApiService().getTvById(dataId, apiKey)
+        client.enqueue(object : Callback<TvShowsItem> {
+            override fun onResponse(call: Call<TvShowsItem>, response: Response<TvShowsItem>) {
+                if (response.isSuccessful)
+                    _tvShow.value = response.body()
+                else
+                    Log.e(TAG, "onResponse: ${response.message()}")
             }
-        }
-        return tvShow
+
+            override fun onFailure(call: Call<TvShowsItem>, t: Throwable) {
+                Log.e(TAG, "onFailure: ${t.message}")
+            }
+
+        })
+        return _tvShow
     }
 
 }
