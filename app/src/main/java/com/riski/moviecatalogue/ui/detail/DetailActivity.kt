@@ -39,11 +39,11 @@ class DetailActivity : AppCompatActivity() {
                         tvDate.text = movie.releaseDate
                         val genres = movie.genres
                         var genre: String? = null
-                        for (i in 0 until genres!!.size) {
-                            if (genre.isNullOrEmpty())
-                                genre = genres[i]?.name
+                        for (i in genres!!.indices) {
+                            genre = if (genre.isNullOrEmpty())
+                                genres[i]?.name
                             else
-                                genre = "$genre, ${genres[i]?.name}"
+                                "$genre, ${genres[i]?.name}"
                         }
                         tvGenreList.text = genre
                         val budget = "$" + movie.budget.toString()
@@ -52,6 +52,7 @@ class DetailActivity : AppCompatActivity() {
                         tvRevenueValue.text = revenue
                         tvTitle.text = movie.title
                         tvOverviewDesc.text = movie.overview
+                        progressBar.visibility = View.INVISIBLE
                     }
                 })
             } else {
@@ -63,11 +64,11 @@ class DetailActivity : AppCompatActivity() {
                         tvDate.text = tvShow.firstAirDate
                         val genres = tvShow.genres
                         var genre: String? = null
-                        for (i in 0 until genres!!.size) {
-                            if (genre.isNullOrEmpty())
-                                genre = genres[i]?.name
+                        for (i in genres!!.indices) {
+                            genre = if (genre.isNullOrEmpty())
+                                genres[i]?.name
                             else
-                                genre = "$genre, ${genres[i]?.name}"
+                                "$genre, ${genres[i]?.name}"
                         }
                         tvGenreList.text = genre
                         tvBudget.visibility = View.INVISIBLE
@@ -76,6 +77,7 @@ class DetailActivity : AppCompatActivity() {
                         tvRevenueValue.visibility = View.INVISIBLE
                         tvTitle.text = tvShow.name
                         tvOverviewDesc.text = tvShow.overview
+                        progressBar.visibility = View.INVISIBLE
                     }
                 })
             }

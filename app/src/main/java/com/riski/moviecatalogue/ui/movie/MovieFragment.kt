@@ -34,6 +34,7 @@ class MovieFragment : Fragment() {
 
             viewModel.getMovies().observe(viewLifecycleOwner, { movies ->
                 binding.rvMovie.adapter = MovieGridAdapter(movies)
+                binding.progressBar.visibility = View.INVISIBLE
             })
 
             with(binding.rvMovie) {

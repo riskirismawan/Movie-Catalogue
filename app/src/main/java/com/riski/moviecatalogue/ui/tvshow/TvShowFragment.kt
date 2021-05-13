@@ -34,6 +34,7 @@ class TvShowFragment : Fragment() {
 
             viewModel.getTvShows().observe(viewLifecycleOwner, { tvShows ->
                 binding.rvTvShow.adapter = TvShowGridAdapter(tvShows)
+                binding.progressBar.visibility = View.INVISIBLE
             })
 
             with(binding.rvTvShow) {
