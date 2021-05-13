@@ -1,7 +1,9 @@
 package com.riski.moviecatalogue.ui.home
 
 import androidx.recyclerview.widget.RecyclerView
+import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
@@ -9,7 +11,10 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.riski.moviecatalogue.R
 import com.riski.moviecatalogue.utils.DataDummy
+import com.riski.moviecatalogue.utils.EspressoIdlingResource
+import org.junit.After
 import org.junit.Assert.*
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
@@ -20,6 +25,16 @@ class HomeActivityTest {
 
     @get:Rule
     var activityRule = ActivityScenarioRule(HomeActivity::class.java)
+
+    @Before
+    fun setUp() {
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.espTestIdlingRes)
+    }
+
+    @After
+    fun tearDown() {
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.espTestIdlingRes)
+    }
 
     @Test
     fun loadMovies() {
@@ -32,17 +47,11 @@ class HomeActivityTest {
         onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         onView(withId(R.id.poster)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_date)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_date)).check(matches(withText(dummyMovie[0].releaseDate)))
         onView(withId(R.id.tv_genre_list)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_genre_list)).check(matches(withText(dummyMovie[0].genre)))
         onView(withId(R.id.tv_budget_value)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_budget_value)).check(matches(withText(dummyMovie[0].budget)))
         onView(withId(R.id.tv_revenue_value)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_revenue_value)).check(matches(withText(dummyMovie[0].revenue)))
         onView(withId(R.id.tv_title)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_title)).check(matches(withText(dummyMovie[0].title)))
         onView(withId(R.id.tv_overview_desc)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_overview_desc)).check(matches(withText(dummyMovie[0].overview)))
     }
 
     @Test
@@ -58,13 +67,9 @@ class HomeActivityTest {
         onView(withId(R.id.rv_tv_show)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         onView(withId(R.id.poster)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_date)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_date)).check(matches(withText(dummyTvShow[0].releaseDate)))
         onView(withId(R.id.tv_genre_list)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_genre_list)).check(matches(withText(dummyTvShow[0].genre)))
         onView(withId(R.id.tv_title)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_title)).check(matches(withText(dummyTvShow[0].title)))
         onView(withId(R.id.tv_overview_desc)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_overview_desc)).check(matches(withText(dummyTvShow[0].overview)))
     }
 
 }
