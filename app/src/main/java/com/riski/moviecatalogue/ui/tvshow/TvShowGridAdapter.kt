@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.riski.moviecatalogue.data.response.TvShowsItem
+import com.riski.moviecatalogue.data.source.remote.response.TvShowsItem
 import com.riski.moviecatalogue.databinding.GridItemViewBinding
 import com.riski.moviecatalogue.ui.detail.DetailActivity
 
-class TvShowGridAdapter(private val tvShows: ArrayList<TvShowsItem>) :
+class TvShowGridAdapter(private val tvShows: List<TvShowsItem>) :
     RecyclerView.Adapter<TvShowGridAdapter.TvShowViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvShowViewHolder {

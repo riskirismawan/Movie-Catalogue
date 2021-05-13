@@ -1,4 +1,4 @@
-package com.riski.moviecatalogue.data.remote
+package com.riski.moviecatalogue.data.source.remote
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

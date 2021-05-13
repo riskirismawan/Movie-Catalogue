@@ -1,9 +1,9 @@
-package com.riski.moviecatalogue.data.remote
+package com.riski.moviecatalogue.data.source.remote
 
-import com.riski.moviecatalogue.data.response.MovieResponse
-import com.riski.moviecatalogue.data.response.MoviesItem
-import com.riski.moviecatalogue.data.response.TvShowResponse
-import com.riski.moviecatalogue.data.response.TvShowsItem
+import com.riski.moviecatalogue.data.source.remote.response.MovieResponse
+import com.riski.moviecatalogue.data.source.remote.response.MoviesItem
+import com.riski.moviecatalogue.data.source.remote.response.TvShowResponse
+import com.riski.moviecatalogue.data.source.remote.response.TvShowsItem
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

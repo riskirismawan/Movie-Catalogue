@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.riski.moviecatalogue.data.response.MoviesItem
+import com.riski.moviecatalogue.data.source.remote.response.MoviesItem
 import com.riski.moviecatalogue.databinding.GridItemViewBinding
 import com.riski.moviecatalogue.ui.detail.DetailActivity
 
-class MovieGridAdapter(private val movies: ArrayList<MoviesItem>) : RecyclerView.Adapter<MovieGridAdapter.MovieGridViewHolder>() {
+class MovieGridAdapter(private val movies: List<MoviesItem>) : RecyclerView.Adapter<MovieGridAdapter.MovieGridViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieGridViewHolder {
         val binding = GridItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)

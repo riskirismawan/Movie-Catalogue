@@ -1,4 +1,4 @@
-package com.riski.moviecatalogue.data.response
+package com.riski.moviecatalogue.data.source.remote.response
 
 import com.google.gson.annotations.SerializedName
 
@@ -42,9 +42,6 @@ data class MoviesItem(
 
 	@field:SerializedName("poster_path")
 	val posterPath: String? = null,
-
-	@field:SerializedName("backdrop_path")
-	val backdropPath: String? = null,
 
 	@field:SerializedName("release_date")
 	val releaseDate: String? = null,

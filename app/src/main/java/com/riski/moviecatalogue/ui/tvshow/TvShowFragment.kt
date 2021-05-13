@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.riski.moviecatalogue.databinding.FragmentTvShowBinding
+import com.riski.moviecatalogue.viewmodel.ViewModelFactory
 
 class TvShowFragment : Fragment() {
 
@@ -25,12 +26,13 @@ class TvShowFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
+            val factory = ViewModelFactory.getInstance()
             val viewModel = ViewModelProvider(
                 this,
-                ViewModelProvider.NewInstanceFactory()
+                factory
             )[TvShowViewModel::class.java]
 
-            viewModel.tvShow.observe(viewLifecycleOwner, { tvShows ->
+            viewModel.getTvShows().observe(viewLifecycleOwner, { tvShows ->
                 binding.rvTvShow.adapter = TvShowGridAdapter(tvShows)
             })
 

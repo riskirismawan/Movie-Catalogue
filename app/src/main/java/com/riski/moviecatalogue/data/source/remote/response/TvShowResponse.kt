@@ -1,4 +1,4 @@
-package com.riski.moviecatalogue.data.response
+package com.riski.moviecatalogue.data.source.remote.response
 
 import com.google.gson.annotations.SerializedName
 
@@ -36,9 +36,6 @@ data class TvShowsItem(
 
 	@field:SerializedName("origin_country")
 	val originCountry: List<String?>? = null,
-
-	@field:SerializedName("backdrop_path")
-	val backdropPath: String? = null,
 
 	@field:SerializedName("original_name")
 	val originalName: String? = null,

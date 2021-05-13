@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.riski.moviecatalogue.databinding.FragmentMovieBinding
+import com.riski.moviecatalogue.viewmodel.ViewModelFactory
 
 class MovieFragment : Fragment() {
 
@@ -25,12 +26,13 @@ class MovieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
+            val factory = ViewModelFactory.getInstance()
             val viewModel = ViewModelProvider(
                 this,
-                ViewModelProvider.NewInstanceFactory()
+                factory
             )[MovieViewModel::class.java]
 
-            viewModel.movie.observe(viewLifecycleOwner, { movies ->
+            viewModel.getMovies().observe(viewLifecycleOwner, { movies ->
                 binding.rvMovie.adapter = MovieGridAdapter(movies)
             })
 

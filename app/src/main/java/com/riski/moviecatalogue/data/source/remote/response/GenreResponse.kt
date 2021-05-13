@@ -1,4 +1,4 @@
-package com.riski.moviecatalogue.data.response
+package com.riski.moviecatalogue.data.source.remote.response
 
 import com.google.gson.annotations.SerializedName
 
