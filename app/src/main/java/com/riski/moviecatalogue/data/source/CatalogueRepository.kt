@@ -30,19 +30,13 @@ class CatalogueRepository private constructor(private val remoteDataSource: Remo
                     for (response in movieItems) {
                         val movie = MoviesItem(
                             response.overview,
-                            response.originalLanguage,
-                            response.originalTitle,
                             response.budget,
                             response.revenue,
                             response.title,
                             response.genres,
                             response.posterPath,
                             response.releaseDate,
-                            response.popularity,
-                            response.voteAverage,
-                            response.id,
-                            response.adult,
-                            response.voteCount
+                            response.id
                         )
                         movieList.add(movie)
                     }
@@ -60,19 +54,13 @@ class CatalogueRepository private constructor(private val remoteDataSource: Remo
                 override fun onAllMovieReceived(movieItem: MoviesItem) {
                     val movie = MoviesItem(
                         movieItem.overview,
-                        movieItem.originalLanguage,
-                        movieItem.originalTitle,
                         movieItem.budget,
                         movieItem.revenue,
                         movieItem.title,
                         movieItem.genres,
                         movieItem.posterPath,
                         movieItem.releaseDate,
-                        movieItem.popularity,
-                        movieItem.voteAverage,
-                        movieItem.id,
-                        movieItem.adult,
-                        movieItem.voteCount
+                        movieItem.id
                     )
                     itemMovie.postValue(movie)
                 }
@@ -91,16 +79,10 @@ class CatalogueRepository private constructor(private val remoteDataSource: Remo
                         val tvShow = TvShowsItem(
                             response.firstAirDate,
                             response.overview,
-                            response.originalLanguage,
                             response.genres,
                             response.posterPath,
-                            response.originCountry,
-                            response.originalName,
-                            response.popularity,
-                            response.voteAverage,
                             response.name,
-                            response.id,
-                            response.voteCount
+                            response.id
                         )
                         tvShowList.add(tvShow)
                     }
@@ -119,16 +101,10 @@ class CatalogueRepository private constructor(private val remoteDataSource: Remo
                     val tvShow = TvShowsItem(
                         tvShowItem.firstAirDate,
                         tvShowItem.overview,
-                        tvShowItem.originalLanguage,
                         tvShowItem.genres,
                         tvShowItem.posterPath,
-                        tvShowItem.originCountry,
-                        tvShowItem.originalName,
-                        tvShowItem.popularity,
-                        tvShowItem.voteAverage,
                         tvShowItem.name,
-                        tvShowItem.id,
-                        tvShowItem.voteCount
+                        tvShowItem.id
                     )
                     itemTvShow.postValue(tvShow)
                 }
