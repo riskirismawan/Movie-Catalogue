@@ -9,6 +9,11 @@ import com.riski.moviecatalogue.R
 import com.riski.moviecatalogue.ui.home.HomeActivity
 
 class SplashScreenActivity : AppCompatActivity() {
+
+    companion object {
+        private const val TIME = 3000L
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
@@ -24,6 +29,6 @@ class SplashScreenActivity : AppCompatActivity() {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()
-        }, 3000L)
+        }, TIME)
     }
 }
