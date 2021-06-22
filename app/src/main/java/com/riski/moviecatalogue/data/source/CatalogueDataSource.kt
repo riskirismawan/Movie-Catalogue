@@ -1,16 +1,26 @@
 package com.riski.moviecatalogue.data.source
 
 import androidx.lifecycle.LiveData
-import com.riski.moviecatalogue.data.source.remote.response.MoviesItem
-import com.riski.moviecatalogue.data.source.remote.response.TvShowsItem
+import androidx.paging.PagedList
+import com.riski.moviecatalogue.data.source.local.entity.MovieEntity
+import com.riski.moviecatalogue.data.source.local.entity.TvShowEntity
+import com.riski.moviecatalogue.vo.Resource
 
 interface CatalogueDataSource {
 
-    fun getMovies(): LiveData<List<MoviesItem>>
+    fun getMovies(): LiveData<Resource<PagedList<MovieEntity>>>
 
-    fun getMovieDetail(movieId: Int): LiveData<MoviesItem>
+    fun getMovieDetail(movieId: Int): LiveData<Resource<MovieEntity>>
 
-    fun getTvShows(): LiveData<List<TvShowsItem>>
+    fun getFavoriteMovies(): LiveData<PagedList<MovieEntity>>
 
-    fun getTvShowDetail(tvShowId: Int): LiveData<TvShowsItem>
+    fun setFavoriteMovie(movie: MovieEntity, state: Boolean)
+
+    fun getTvShows(): LiveData<Resource<PagedList<TvShowEntity>>>
+
+    fun getTvShowDetail(tvShowId: Int): LiveData<Resource<TvShowEntity>>
+
+    fun getFavoriteTvShows(): LiveData<PagedList<TvShowEntity>>
+
+    fun setFavoriteTvShow(tvShow: TvShowEntity, state: Boolean)
 }

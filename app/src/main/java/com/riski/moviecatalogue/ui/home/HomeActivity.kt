@@ -6,8 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.riski.moviecatalogue.R
 import com.riski.moviecatalogue.databinding.ActivityHomeBinding
-import com.riski.moviecatalogue.ui.movie.MovieFragment
-import com.riski.moviecatalogue.ui.tvshow.TvShowFragment
+import com.riski.moviecatalogue.ui.home.favorite.FavoriteFragment
+import com.riski.moviecatalogue.ui.home.movie.MovieFragment
+import com.riski.moviecatalogue.ui.home.tvshow.TvShowFragment
 
 
 class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -24,7 +25,6 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         mFragmentManager
             .beginTransaction()
             .add(R.id.fragment_container, movieFragment)
-            .addToBackStack(null)
             .commit()
 
         binding.bottomNav.setOnNavigationItemSelectedListener(this)
@@ -38,7 +38,6 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 mFragmentManager
                     .beginTransaction()
                     .replace(R.id.fragment_container, movieFragment)
-                    .addToBackStack(null)
                     .commit()
             }
             R.id.nav_tv_show -> {
@@ -47,7 +46,14 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 mFragmentManager
                     .beginTransaction()
                     .replace(R.id.fragment_container, tvShowFragment)
-                    .addToBackStack(null)
+                    .commit()
+            }
+            R.id.nav_favorite -> {
+                val mFragmentManager = supportFragmentManager
+                val favoriteFragment = FavoriteFragment()
+                mFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, favoriteFragment)
                     .commit()
             }
         }

@@ -11,7 +11,7 @@ data class TvShowResponse(
 	val totalPages: Int? = null,
 
 	@field:SerializedName("results")
-	val results: List<TvShowsItem?>? = null,
+	val results: List<TvShowsItem>? = null,
 
 	@field:SerializedName("total_results")
 	val totalResults: Int? = null
@@ -20,20 +20,20 @@ data class TvShowResponse(
 data class TvShowsItem(
 
 	@field:SerializedName("first_air_date")
-	val firstAirDate: String? = null,
+	val firstAirDate: String,
 
 	@field:SerializedName("overview")
-	val overview: String? = null,
+	val overview: String,
 
 	@field:SerializedName("genres")
-	val genres: List<GenreResponse?>? = null,
+	val genres: List<GenreResponse>,
 
 	@field:SerializedName("poster_path")
-	val posterPath: String? = null,
+	val posterPath: String,
 
 	@field:SerializedName("name")
-	val name: String? = null,
+	val name: String,
 
 	@field:SerializedName("id")
-	val id: Int? = null,
+	val id: Int,
 )

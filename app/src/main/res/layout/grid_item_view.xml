@@ -16,7 +16,6 @@
             android:id="@+id/poster"
             android:layout_width="match_parent"
             android:layout_height="280dp"
-            android:src="@color/blue_dark"
             android:scaleType="centerCrop"
             android:contentDescription="@string/poster"
             app:layout_constraintTop_toTopOf="parent"
